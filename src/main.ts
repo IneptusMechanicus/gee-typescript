@@ -16,7 +16,6 @@ class Square {
 	color;
 
 	constructor(props) {
-		
 		this.x = props.x;
 		this.y = props.y;
 		this.width = props.width;
@@ -29,12 +28,12 @@ class Square {
 	draw() {
 		this.context.clearRect(0, 0, canvas.width, canvas.height);
 		this.context.save();
-		
+
 		// Move to square center, apply rotation and scale
 		this.context.translate(square.x, square.y);
 		this.context.rotate(square.rotation * Math.PI / 180);
 		this.context.scale(square.scale, square.scale);
-		
+
 		// Draw square centered at origin
 		this.context.fillStyle = square.color;
 		this.context.fillRect(-square.width/2, -square.height/2, square.width, square.height);
@@ -45,8 +44,8 @@ class Square {
 	}
 }
 
+const canvas = document.createElement('canvas');
 document.addEventListener('DOMContentLoaded', () => {
-	const canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
 	ctx = canvas.getContext('2d');
 });
