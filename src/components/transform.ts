@@ -28,6 +28,7 @@ export class Transform {
     this.size = props.size;
   }
 
+  // Might remove these setters later, kinda seems right for a unified interface
   public setPosition(x: number, y: number) {
     this.position.x = x;
     this.position.y = y;

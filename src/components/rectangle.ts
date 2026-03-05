@@ -1,11 +1,12 @@
+import { Drawable } from "../types/base";
 import { Point2D, Size2D, Transform, type TransformData } from "./transform";
 
-type RectangleData = {
+export type RectangleData = {
   transform: TransformData;
   color?: string;
 }
 
-export class Rectangle {
+export class Rectangle implements Drawable {
   public readonly transform: Transform;
   private color: string;
   private context: CanvasRenderingContext2D;
@@ -30,8 +31,6 @@ export class Rectangle {
       this.transform.size.height
     );
 
-    // this.context.save();
-
     // Move to square center, apply rotation and scale
     this.context.translate(this.transform.position.x, this.transform.position.y);
     this.context.rotate(this.transform.rotation * Math.PI / 180);
@@ -53,23 +52,19 @@ export class Rectangle {
   public setPosition(position: Partial<Point2D>) {
     this.transform.position.x = position.x ?? this.transform.position.x;
     this.transform.position.y = position.y ?? this.transform.position.y;
-    this.draw();
   }
 
   public setRotation(rotation: number) {
     this.transform.rotation = rotation;
-    this.draw();
   }
 
   public setScale(scale: Partial<Point2D>) {
     this.transform.scale.x = scale.x ?? this.transform.scale.x;
     this.transform.scale.y = scale.y ?? this.transform.scale.y;
-    this.draw();
   }
 
   public setSize(size: Partial<Size2D>) {
     this.transform.size.width = size.width ?? this.transform.size.width;
     this.transform.size.height = size.height ?? this.transform.size.height;
-    this.draw();
   }
 }
