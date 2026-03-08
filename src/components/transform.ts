@@ -1,12 +1,4 @@
-export type Point2D = {
-  x: number;
-  y: number;
-}
-
-export type Size2D = {
-  width: number;
-  height: number;
-}
+import { Point2D, Size2D } from "../types/base";
 
 export type TransformData = {
   position: Point2D;
@@ -28,19 +20,22 @@ export class Transform {
     this.size = props.size;
   }
 
-  // Might remove these setters later, kinda seems right for a unified interface
-  public setPosition(x: number, y: number) {
-    this.position.x = x;
-    this.position.y = y;
+  public setPosition(position: Partial<Point2D>) {
+    this.position.x = position.x ?? this.position.x;
+    this.position.y = position.y ?? this.position.y;
   }
 
-  public setScale(x: number, y: number) {
-    this.scale.x = x;
-    this.scale.y = y;
+  public setRotation(rotation: number) {
+    this.rotation = rotation;
   }
 
-  public setSize(width: number, height: number) {
-    this.size.width = width;
-    this.size.height = height;
+  public setScale(scale: Partial<Point2D>) {
+    this.scale.x = scale.x ?? this.scale.x;
+    this.scale.y = scale.y ?? this.scale.y;
+  }
+
+  public setSize(size: Partial<Size2D>) {
+    this.size.width = size.width ?? this.size.width;
+    this.size.height = size.height ?? this.size.height;
   }
 }
